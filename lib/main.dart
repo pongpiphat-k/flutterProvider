@@ -24,105 +24,27 @@ class FavoriteList extends StatelessWidget {
       appBar: AppBar(
         title: Text('Favorite List')
         ),
-        body: 
-        ListView(
-          children: [
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[0]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[1]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[2]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[3]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[4]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[5]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[6]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[7]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[8]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[9]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-              title: Text(myitems[10]),
-              leading: Icon(Icons.favorite_border),
-            ),
-            ListTile(
-              onTap: () {},
-            
-              title: Text(myitems[11]),
-              leading: Icon(Icons.favorite_border),
-            ),
-          ],
-        ),
+      body: Consumer<FavoriteItemsModel>(
+        builder: (context, favoriteItemsModel, child) {
+          return ListView.builder(
+            itemCount: favoriteItemsModel.items.length,
+            itemBuilder: (context, index) {
+              final item = favoriteItemsModel.items[index];
+              return ListTile(
+                onTap: () {
+                  favoriteItemsModel.toggleFavorite(item);
+                },
+                title: Text(item.name),
+                trailing: Icon(
+                  item.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: item.isFavorite ? Colors.red : null,
+                ),
+              );
+            },
+          );
+        },
+      ),
       );
   }
 }
-// class CounterScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Favorite List')),
-//       body: Consumer<CounterModel>(
-//         builder: (context, counter, child) {
-//           return Center(child: Text("Count: ${counter.count}", style: TextStyle(fontSize: 32)));
-//         },
-//       ),
-//       floatingActionButton: Column(
-//         mainAxisAlignment: MainAxisAlignment.end,
-//         children: [
-//           FloatingActionButton(onPressed: () => increment(context), child: Icon(Icons.add)),
-//           SizedBox(height: 10),
-//           FloatingActionButton(onPressed: () => reset(context), child: Icon(Icons.refresh)),
-//         ],
-//       ),
-//     );
-//   }
-
-  // void increment(context) {
-  //   final counter = Provider.of<CounterModel>(context, listen: false);
-  //   counter.increment();
-  // }
-
-  // void reset(context) {
-  //   final counter = Provider.of<CounterModel>(context, listen: false);
-  //   counter.reset();
-  // }
-// }
-
 
