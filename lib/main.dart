@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'counter_model.dart';
+import 'favorite_items_model.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (_) => CounterModel(), child: MyApp()));
+  runApp(ChangeNotifierProvider(create: (_) => FavoriteItemsModel(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,12 +14,8 @@ class MyApp extends StatelessWidget {
 }
 
 class FavoriteList extends StatelessWidget {
-  bool isFavorite = false;
- 
-
   @override
   Widget build(BuildContext context) {
-    List myitems = ['Item #1', 'Item #2', 'Item #3', 'Item #4', 'Item #5', 'Item #6', 'Item #7', 'Item #8', 'Item #9', 'Item #10', 'Item #11', 'Item #12'];
     return Scaffold(
       appBar: AppBar(
         title: Text('Favorite List')
